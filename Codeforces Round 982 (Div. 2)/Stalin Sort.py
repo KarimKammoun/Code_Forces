@@ -2,17 +2,19 @@ t=int (input())
 for i in range(t):
     n=int(input())
     liste=list(map(int,input().split()))
-    max=0
-    res=[]
+
+    min=n
+
+
     for j in range(n):
-        if liste[j]>=max:
-            res.append(j)
-            max=liste[j]
-    
-    l=len(res)
-    for j in range(0,len(res)):
-        res[j]=res[j]+l-(j+1)
-        
-    print(res)
-    print(min(res))
-    
+        k=j
+        pres=liste[j]
+        for c in range(j+1,n):
+            if liste[c]>pres:
+                k=k+1
+        if k<min:
+            min=k
+    print(min)
+
+
+
