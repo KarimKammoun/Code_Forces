@@ -2,36 +2,37 @@ t=int(input())
 
 for i in range(t):
     n,m=map(int,input().split())
-    test=True
-    liste=[0]*((n*m)-1)
-    p=[0]*n
-    l=[0]*((n*m))
-    for j in range(n):
 
-        liste=[0]*((n*m))
+    test=True
+
+    visited=[]
+
+    res=[0 for i in range(n)]
+
+    for j in range(n):
         
-        l1=list(map(int,input().split()))
+        liste=list(map(int,input().split()))
+        liste.sort()
         
-        if test==True:
-            for c in range(len(l1)):
-                if l[l1[c]]==1:
-                    test=False
-                l[l1[c]]=1
-                liste[l1[c]]=1
-            c=0
-            while c<len(liste) and liste[c]!=1:
-                c=c+1  
-            p[c]=j+1  
-            for d in range(c,len(liste),n):
-                
-                if liste[d]!=1:
-                    test=False
-                    break
-        else:
+        if liste[0]<n:
+            res[liste[0]]=j+1
+
+        if liste[0] in visited:
+            test=False
+        visited.append(liste[0])
+        if test==False:
             continue
+
+        
+        for j in range(1,m):
+            if liste[j] != liste[j-1]+n:
+                test=False
+                break
+
     
+
     if test==True :
-        print(" ".join(map(str, p)))
+        print(" ".join(map(str, res)))
     else:
         print(-1)
 
